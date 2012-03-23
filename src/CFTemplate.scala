@@ -7,6 +7,11 @@ import java.util.StringTokenizer
  */
 
 object CFTemplate extends App {
+
+  def main() {
+
+  }
+
   class Tokenizer(in: BufferedReader, pattern: String = " \t\n\r\f") {
     private def tokenizer = new StringTokenizer(_:String, pattern)
     var st: StringTokenizer = tokenizer("")
@@ -28,8 +33,9 @@ object CFTemplate extends App {
   implicit def nextLong()(implicit t: Tokenizer) = t.next(_.toLong)
   implicit def nextDouble()(implicit t: Tokenizer) = t.next(_.toDouble)
   implicit def nextBigInt()(implicit t: Tokenizer) = t.next(BigInt(_))
-  implicit def nextString()(implicit t: Tokenizer) = t.next(_)
+  implicit def nextString()(implicit t: Tokenizer) = t.next(identity[String])
   
   def nextSeq[A](len: Int = nextInt())(implicit c: () => A): Seq[A] = for (i <- 0 until len) yield c()
   
+  main()
 }
